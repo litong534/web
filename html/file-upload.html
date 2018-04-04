@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.btn {
+			padding: 5px 10px;
+			display: inline-block;
+			height: 30px;
+			background: rgb(64, 121, 226);
+			border: 1px solid rgb(130, 173, 252);
+			border-radius: 5px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="btn" class="btn">文件上传</div>
+	<input hidden type="file" id="file" />
+	<img id="preview" alt="">
+
+	<script>
+		var btn = document.getElementById("btn");
+		var file = document.getElementById("file");
+		var preview = document.getElementById("preview");
+		var fr = new FileReader();
+		var xhr = new XMLHttpRequest();
+		btn.addEventListener('click', function () {
+			file.click();
+		}, false);
+
+		fr.addEventListener("load", function () {
+			preview.src = fr.result;
+		}, false);
+
+		file.addEventListener('change', function () {
+			var filePath = '/upload/file';
+			var form = new FormData();
+			form.append(`file`, file.files[0]);
+			if(file.files[0]) {
+				fr.readAsDataURL(file.files[0]);
+			}
+			xhr.open("post", filePath, true);
+			xhr.send(form);
+		});
+
+		xhr.addEventListener('progress', function (e) {
+			console.log(e);
+		})
+	</script>
+</body>
+
+</html>

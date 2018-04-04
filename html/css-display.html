@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .inline {
+      background: rgb(247, 78, 12);
+      text-align: center;
+    }
+    .block {
+      background:rgb(255, 214, 81);
+    }
+  </style>
+</head>
+<body>
+  <div class="inline">
+    <span style="padding: 40px 0;">span</span><a href="//www.baidu.com">baidu</a><input type="text" value="123"/>
+  </div>
+
+  <div class="block">
+    <div style="text-align: center">div</div>
+    <h3>h3</h3>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+    <ol>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ol>
+  </div>
+  <div class="inline-block">
+    <span style="display:inline-block;padding: 4px;background: red;border-radius:50%;">123</span>
+  </div>
+</body>
+</html>
+
+<!-- inline行内元素不能设置高度以及上下边距，可以设置宽度和左右边距，会被父元素text-align影响
+ 块级元素每次都从新行开始，宽度为父容器宽度，除非重新设置
+inline-block行内块级元素对象呈现为行内元素，但是内容作为块级元素，可以设置宽高以及边距，不会从新行开始-->

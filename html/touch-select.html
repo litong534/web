@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+	<title>Document</title>
+	<style>
+		html,body{
+			padding:0;
+			margin: 0;
+		}
+
+		.container {
+			display: flex;
+		}
+
+		.container div {
+			width: 50px;
+			height: 50px;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="box" class="container">
+			<div data-idx="1">1</div>
+			<div data-idx="2">2</div>
+			<div data-idx="3">3</div>
+			<div data-idx="4">4</div>
+			<div data-idx="5">5</div>
+			<div data-idx="6">6</div>
+	</div>
+</body>
+<script>
+	let box = document.getElementById('box');
+	const BOX_WIDTH = 50;
+	let touchIndex;
+	box.addEventListener('touchstart',function(e){
+		let idx = e.target.getAttribute('data-idx');
+		console.log(idx);
+		draw(idx);
+	},false);
+
+	function draw(index) {
+		reset(box);
+		for(let i = 0; i < index; i++) {
+			box.children[i].style.background = 'blue';
+		}
+	}
+
+	box.addEventListener('touchmove',function(e) {
+		// console.log(e.touches[0].clientX);
+		let X = e.touches[0].clientX;
+		let newTouchIndex = Math.ceil(X / BOX_WIDTH);
+		if(touchIndex !== newTouchIndex) {
+			touchIndex = newTouchIndex;
+			draw(touchIndex);
+		}
+
+	},false);
+
+	function reset(box) {
+		for(let i = 0; i<box.children.length;i++) {
+			box.children[i].style.background = 'red';
+		}
+	}
+</script>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "webpack3",
+  "version": "1.0.0",
+  "description": "test webpack3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --config webpack.config.js",
+    "build": "webpack"
+  },
+  "author": "rozwel",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "webpack": "^3.8.1"
+  },
+  "devDependencies": {
+    "uglifyjs-webpack-plugin": "^1.1.1"
+  }
+}
