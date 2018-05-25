@@ -1,0 +1,39 @@
+{
+  "typescript.check.npmIsInstalled": false,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.snippetSuggestions": "top",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": false,
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "stylusSupremacy.insertColons": true, // 是否插入冒号
+  "stylusSupremacy.insertSemicolons": false, // 是否插入分号
+  "stylusSupremacy.insertBraces": false, // 是否插入大括号
+  "stylusSupremacy.insertNewLineAroundImports": false, // import之后是否换行
+  "stylusSupremacy.insertNewLineAroundBlocks": false, // 两个选择器中是否换行
+  "editor.colorDecorators": true,
+  "workbench.colorTheme": "Material Theme Ocean High Contrast",
+  "vetur.format.defaultFormatter.html": "js-beautify-html",
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "author-generator.author": "rozwel",
+  "author-generator.email": "rozwel@sina.com",
+  "workbench.iconTheme": "eq-material-theme-icons",
+  "javascript.validate.enable": false,
+  "files.associations": {
+    "*.vue": "vue"
+  },
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [
+    "javascript",
+    {
+      "language": "vue",
+      "autoFix": true
+    },
+    "html",
+    "vue"
+  ],
+  "editor.tabSize": 2,
+  "editor.renderWhitespace": "all",
+  "editor.detectIndentation": false
+}
