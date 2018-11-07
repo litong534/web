@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Any Types (any类型)</title>
+    <meta name="description" content="">
+    
+    
+    <link rel="preload" href="/assets/css/styles.9a3dd699.css" as="style"><link rel="preload" href="/assets/js/app.9a3dd699.js" as="script"><link rel="preload" href="/assets/js/3.fb6f790a.js" as="script"><link rel="prefetch" href="/assets/css/1.styles.bbb68a50.css"><link rel="prefetch" href="/assets/css/2.styles.a2bd3099.css"><link rel="prefetch" href="/assets/js/1.bbb68a50.js"><link rel="prefetch" href="/assets/js/10.1e04b05c.js"><link rel="prefetch" href="/assets/js/11.96829f11.js"><link rel="prefetch" href="/assets/js/12.1f4bace4.js"><link rel="prefetch" href="/assets/js/13.61e0289a.js"><link rel="prefetch" href="/assets/js/2.a2bd3099.js"><link rel="prefetch" href="/assets/js/4.a1e18267.js"><link rel="prefetch" href="/assets/js/5.964c9483.js"><link rel="prefetch" href="/assets/js/6.56c15832.js"><link rel="prefetch" href="/assets/js/7.a086ec1a.js"><link rel="prefetch" href="/assets/js/8.98169066.js"><link rel="prefetch" href="/assets/js/9.866da1e2.js">
+    <link rel="stylesheet" href="/assets/css/1.styles.bbb68a50.css"><link rel="stylesheet" href="/assets/css/2.styles.a2bd3099.css"><link rel="stylesheet" href="/assets/css/styles.9a3dd699.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><!---->  <!----> </div> <div class="page"> <div class="content"><h2 id="any-types-any类型"><a href="#any-types-any类型" aria-hidden="true" class="header-anchor">#</a> Any Types (any类型)</h2> <p>如果你想要一种方法来逃避类型检查，any是你想要的答案，<strong>但是使用any是完全不安全的，在任何情况下建议都不要使用它</strong></p> <p>依然举个栗子，下面的代码不会报告任何异常</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span>one<span class="token punctuation">:</span> any<span class="token punctuation">,</span> two<span class="token punctuation">:</span> any<span class="token punctuation">)</span><span class="token punctuation">:</span> number <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> one <span class="token operator">+</span> two<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// Works.</span>
+<span class="token function">add</span><span class="token punctuation">(</span><span class="token string">&quot;1&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;2&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Works.</span>
+<span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// Works.</span>
+</code></pre></div><p>甚至是会报告运行时异常的错误Flow都不会报告</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">getNestedProperty</span><span class="token punctuation">(</span>obj<span class="token punctuation">:</span> any<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> obj<span class="token punctuation">.</span>foo<span class="token punctuation">.</span>bar<span class="token punctuation">.</span>baz<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">getNestedProperty</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>只用这几种场景你可以考虑使用any:</p> <ol><li><p>当你想要在已经存在的代码上增加Flow来进行类型检查，并且你在增加类型检查时被阻碍了（也许你的代码需要首先被重写一下）</p></li> <li><p>当你确定你的代码运行良好，由于某些原因Flow不能正常进行类型检查，比如javascript新增加的一些语法，Flow暂时无法正确运行</p></li></ol> <h3 id="避免any溢出"><a href="#避免any溢出" aria-hidden="true" class="header-anchor">#</a> 避免any溢出</h3> <p>当你对一个参数使用了any，会使代码链上所有的值都变成any类型</p> <p>举个栗子，如果你得到了一个属性被声明为any，结果同样会声明为any类型</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">fn</span><span class="token punctuation">(</span>obj<span class="token punctuation">:</span> any<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> foo <span class="token comment">/* (:any) */</span> <span class="token operator">=</span> obj<span class="token punctuation">.</span>foo<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>你可能在后续操作中又用到foo，这样你后续操作得到的值也会变成any类型</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">fn</span><span class="token punctuation">(</span>obj<span class="token punctuation">:</span> any<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> foo <span class="token comment">/* (:any) */</span> <span class="token operator">=</span> obj<span class="token punctuation">.</span>foo<span class="token punctuation">;</span>
+  <span class="token keyword">let</span> bar <span class="token comment">/* (:any) */</span> <span class="token operator">=</span> foo <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>当你继续操作之后，any会占领你的整个代码链</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">fn</span><span class="token punctuation">(</span>obj<span class="token punctuation">:</span> any<span class="token punctuation">)</span> <span class="token comment">/* (:any) */</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> foo <span class="token comment">/* (:any) */</span> <span class="token operator">=</span> obj<span class="token punctuation">.</span>foo<span class="token punctuation">;</span>
+  <span class="token keyword">let</span> bar <span class="token comment">/* (:any) */</span> <span class="token operator">=</span> foo <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> bar<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> bar <span class="token comment">/* (:any) */</span> <span class="token operator">=</span> <span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">{</span> foo<span class="token punctuation">:</span> <span class="token number">2</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> baz <span class="token comment">/* (:any) */</span> <span class="token operator">=</span> <span class="token string">&quot;baz:&quot;</span> <span class="token operator">+</span> bar<span class="token punctuation">;</span>
+</code></pre></div><p>想避免这种情况发生，你需要在整个代码链中尽快斩断any的传播，将中间量声明为其他类型</p> <div class="language-javascipt extra-class"><pre class="language-text"><code>// @flow
+function fn(obj: any) {
+  let foo: number = obj.foo;
+}
+</code></pre></div><p>现在你的代码不会再被any污染了✅</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">fn</span><span class="token punctuation">(</span>obj<span class="token punctuation">:</span> any<span class="token punctuation">)</span> <span class="token comment">/* (:number) */</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> foo<span class="token punctuation">:</span> number <span class="token operator">=</span> obj<span class="token punctuation">.</span>foo<span class="token punctuation">;</span>
+  <span class="token keyword">let</span> bar <span class="token comment">/* (:number) */</span> <span class="token operator">=</span> foo <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> bar<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> bar <span class="token comment">/* (:number) */</span> <span class="token operator">=</span> <span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">{</span> foo<span class="token punctuation">:</span> <span class="token number">2</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> baz <span class="token comment">/* (:string) */</span> <span class="token operator">=</span> <span class="token string">&quot;baz:&quot;</span> <span class="token operator">+</span> bar<span class="token punctuation">;</span>
+
+</code></pre></div></div> <div class="page-edit"><!----> <!----></div> <!----> </div> <!----></div></div>
+    <script src="/assets/js/3.fb6f790a.js" defer></script><script src="/assets/js/app.9a3dd699.js" defer></script>
+  </body>
+</html>

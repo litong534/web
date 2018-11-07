@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Literal Types (字面类型)</title>
+    <meta name="description" content="">
+    
+    
+    <link rel="preload" href="/assets/css/styles.9a3dd699.css" as="style"><link rel="preload" href="/assets/js/app.9a3dd699.js" as="script"><link rel="preload" href="/assets/js/6.56c15832.js" as="script"><link rel="prefetch" href="/assets/css/1.styles.bbb68a50.css"><link rel="prefetch" href="/assets/css/2.styles.a2bd3099.css"><link rel="prefetch" href="/assets/js/1.bbb68a50.js"><link rel="prefetch" href="/assets/js/10.1e04b05c.js"><link rel="prefetch" href="/assets/js/11.96829f11.js"><link rel="prefetch" href="/assets/js/12.1f4bace4.js"><link rel="prefetch" href="/assets/js/13.61e0289a.js"><link rel="prefetch" href="/assets/js/2.a2bd3099.js"><link rel="prefetch" href="/assets/js/3.fb6f790a.js"><link rel="prefetch" href="/assets/js/4.a1e18267.js"><link rel="prefetch" href="/assets/js/5.964c9483.js"><link rel="prefetch" href="/assets/js/7.a086ec1a.js"><link rel="prefetch" href="/assets/js/8.98169066.js"><link rel="prefetch" href="/assets/js/9.866da1e2.js">
+    <link rel="stylesheet" href="/assets/css/1.styles.bbb68a50.css"><link rel="stylesheet" href="/assets/css/2.styles.a2bd3099.css"><link rel="stylesheet" href="/assets/css/styles.9a3dd699.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><!---->  <!----> </div> <div class="page"> <div class="content"><h2 id="literal-types-字面类型"><a href="#literal-types-字面类型" aria-hidden="true" class="header-anchor">#</a> Literal Types (字面类型)</h2> <p>Flow有基本类型来控制字面值，但是我们也可以使用字面值来当做类型约束</p> <p>举个栗子，不使用number 类型，我们可以只接受字面值2来约束参数值</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">acceptsTwo</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">acceptsTwo</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// Works!</span>
+<span class="token comment">// $ExpectError</span>
+<span class="token function">acceptsTwo</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// Error!</span>
+<span class="token comment">// $ExpectError</span>
+<span class="token function">acceptsTwo</span><span class="token punctuation">(</span><span class="token string">&quot;2&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Error!</span>
+</code></pre></div><p>你可以给以下类型声明一个确定的值</p> <ul><li>Booleans: like true or false</li> <li>Numbers: like 42 or 3.14</li> <li>Strings: like &quot;foo&quot; or &quot;bar&quot;</li></ul> <p>配合<code>集合类型</code>可以非常强大</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">getColor</span><span class="token punctuation">(</span>name<span class="token punctuation">:</span> <span class="token string">&quot;success&quot;</span> <span class="token operator">|</span> <span class="token string">&quot;warning&quot;</span> <span class="token operator">|</span> <span class="token string">&quot;danger&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">&quot;success&quot;</span> <span class="token punctuation">:</span> <span class="token keyword">return</span> <span class="token string">&quot;green&quot;</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">&quot;warning&quot;</span> <span class="token punctuation">:</span> <span class="token keyword">return</span> <span class="token string">&quot;yellow&quot;</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">&quot;danger&quot;</span>  <span class="token punctuation">:</span> <span class="token keyword">return</span> <span class="token string">&quot;red&quot;</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">getColor</span><span class="token punctuation">(</span><span class="token string">&quot;success&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+<span class="token function">getColor</span><span class="token punctuation">(</span><span class="token string">&quot;danger&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Works!</span>
+<span class="token comment">// $ExpectError</span>
+<span class="token function">getColor</span><span class="token punctuation">(</span><span class="token string">&quot;error&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// Error!</span>
+</code></pre></div></div> <div class="page-edit"><!----> <!----></div> <!----> </div> <!----></div></div>
+    <script src="/assets/js/6.56c15832.js" defer></script><script src="/assets/js/app.9a3dd699.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Mixed Types (混合类型)</title>
+    <meta name="description" content="">
+    
+    
+    <link rel="preload" href="/assets/css/styles.9a3dd699.css" as="style"><link rel="preload" href="/assets/js/app.9a3dd699.js" as="script"><link rel="preload" href="/assets/js/8.98169066.js" as="script"><link rel="prefetch" href="/assets/css/1.styles.bbb68a50.css"><link rel="prefetch" href="/assets/css/2.styles.a2bd3099.css"><link rel="prefetch" href="/assets/js/1.bbb68a50.js"><link rel="prefetch" href="/assets/js/10.1e04b05c.js"><link rel="prefetch" href="/assets/js/11.96829f11.js"><link rel="prefetch" href="/assets/js/12.1f4bace4.js"><link rel="prefetch" href="/assets/js/13.61e0289a.js"><link rel="prefetch" href="/assets/js/2.a2bd3099.js"><link rel="prefetch" href="/assets/js/3.fb6f790a.js"><link rel="prefetch" href="/assets/js/4.a1e18267.js"><link rel="prefetch" href="/assets/js/5.964c9483.js"><link rel="prefetch" href="/assets/js/6.56c15832.js"><link rel="prefetch" href="/assets/js/7.a086ec1a.js"><link rel="prefetch" href="/assets/js/9.866da1e2.js">
+    <link rel="stylesheet" href="/assets/css/1.styles.bbb68a50.css"><link rel="stylesheet" href="/assets/css/2.styles.a2bd3099.css"><link rel="stylesheet" href="/assets/css/styles.9a3dd699.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><!---->  <!----> </div> <div class="page"> <div class="content"><h2 id="mixed-types-混合类型"><a href="#mixed-types-混合类型" aria-hidden="true" class="header-anchor">#</a> Mixed Types (混合类型)</h2> <p>一般来说项目里会使用到很多类型</p> <p><strong>单类型</strong></p> <p>这里参数类型只能为number</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">square</span><span class="token punctuation">(</span>n<span class="token punctuation">:</span> number<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> n <span class="token operator">*</span> n<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>一组不同的类型</strong></p> <p>这里参数可以为string或number类型</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">stringifyBasicValue</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> string <span class="token operator">|</span> number<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token string">''</span> <span class="token operator">+</span> value<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>类型依赖于传入的参数类型</strong></p> <p>这个例子，返回的类型会与传入的参数类型一致</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> identity<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token constant">T</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token constant">T</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> value<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>这三个是最为常见的类型，但是还有第四种类型</p> <p><strong>可以是任意类型的类型</strong></p> <p>这里传入的参数类型是未知的，可以是任意类型但是函数本身仍然正常运行</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">getTypeOf</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> mixed<span class="token punctuation">)</span><span class="token punctuation">:</span> string <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">typeof</span> value<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="只进不出"><a href="#只进不出" aria-hidden="true" class="header-anchor">#</a> 只进不出</h3> <p>mixed类型会接受任何类型，string,number,object,function，统统可以正常工作</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">stringify</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> mixed<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">stringify</span><span class="token punctuation">(</span><span class="token string">&quot;foo&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">stringify</span><span class="token punctuation">(</span><span class="token number">3.14</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">stringify</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">stringify</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>当时尝试使用mixed来代表你的值的时候，你必须首先指出当前使用的到底是什么类型，否则你会收到一个error</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">stringify</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> mixed<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// $ExpectError</span>
+  <span class="token keyword">return</span> <span class="token string">&quot;&quot;</span> <span class="token operator">+</span> value<span class="token punctuation">;</span> <span class="token comment">// Error!</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">stringify</span><span class="token punctuation">(</span><span class="token string">&quot;foo&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>如果不想error，你就必须确保这个value是确定的某个type</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">stringify</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> mixed<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> value <span class="token operator">===</span> <span class="token string">'string'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">&quot;&quot;</span> <span class="token operator">+</span> value<span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">stringify</span><span class="token punctuation">(</span><span class="token string">&quot;foo&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>因为你使用了typeof去检查类型，Flow知道value在if语句中只会是string类型</p></div> <div class="page-edit"><!----> <!----></div> <!----> </div> <!----></div></div>
+    <script src="/assets/js/8.98169066.js" defer></script><script src="/assets/js/app.9a3dd699.js" defer></script>
+  </body>
+</html>
