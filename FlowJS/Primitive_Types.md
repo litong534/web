@@ -233,9 +233,8 @@ acceptsOptionalString(null);      // Error!
 acceptsOptionalString();          // Works!
 ```
 
-关于null的记法，可谓：遇到问号看位置，后可void前不可，函数参数默认值，千万不要用void
+关于null的记法: 遇到问号看位置，后可void前不可，函数参数默认值，千万不要用null
 
-`void: 怪我咯QAQ`
 
 Symbol 留坑中。。。
 
