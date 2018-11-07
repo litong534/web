@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Primitive Types (基本类型)</title>
+    <meta name="description" content="">
+    
+    
+    <link rel="preload" href="/assets/css/styles.5a8890b4.css" as="style"><link rel="preload" href="/assets/js/app.5a8890b4.js" as="script"><link rel="preload" href="/assets/js/10.55c25e75.js" as="script"><link rel="prefetch" href="/assets/css/1.styles.bbb68a50.css"><link rel="prefetch" href="/assets/css/2.styles.a2bd3099.css"><link rel="prefetch" href="/assets/js/1.bbb68a50.js"><link rel="prefetch" href="/assets/js/11.6dd3ddad.js"><link rel="prefetch" href="/assets/js/12.40ccbb78.js"><link rel="prefetch" href="/assets/js/13.e9f4738b.js"><link rel="prefetch" href="/assets/js/2.a2bd3099.js"><link rel="prefetch" href="/assets/js/3.8d0df0be.js"><link rel="prefetch" href="/assets/js/4.e7506527.js"><link rel="prefetch" href="/assets/js/5.7386d2b6.js"><link rel="prefetch" href="/assets/js/6.7178e768.js"><link rel="prefetch" href="/assets/js/7.3fb4ed2a.js"><link rel="prefetch" href="/assets/js/8.836ac591.js"><link rel="prefetch" href="/assets/js/9.9d37b14f.js">
+    <link rel="stylesheet" href="/assets/css/1.styles.bbb68a50.css"><link rel="stylesheet" href="/assets/css/2.styles.a2bd3099.css"><link rel="stylesheet" href="/assets/css/styles.5a8890b4.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/Type_Annotations/" class="sidebar-link">Type Annotations (类型注释)</a></li><li><a href="/Primitive_Types/" class="active sidebar-link">Primitive Types (基本类型)</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/Primitive_Types/#primitive-types-基本类型" class="sidebar-link">Primitive Types (基本类型)</a></li></ul></li><li><a href="/Literal_Types/" class="sidebar-link">Literal Types (字面类型)</a></li><li><a href="/Mixed_Types/" class="sidebar-link">Mixed Types (混合类型)</a></li><li><a href="/Any_Types/" class="sidebar-link">Any Types (any类型)</a></li><li><a href="/Maybe_Types/" class="sidebar-link">Maybe Types (待定类型)</a></li><li><a href="/Variable_Types/" class="sidebar-link">Variable Types (变量类型)</a></li><li><a href="/Function_Types/" class="sidebar-link">Function Types (函数类型)</a></li><li><a href="/Object_Types/" class="sidebar-link">Object Types (对象类型)</a></li><li><a href="/Array_Types/" class="sidebar-link">Array Types (数组类型)</a></li><li><a href="/Tuple_Types/" class="sidebar-link">Tuple Types(元组类型)</a></li></ul> </div> <div class="page"> <div class="content"><h2 id="primitive-types-基本类型"><a href="#primitive-types-基本类型" aria-hidden="true" class="header-anchor">#</a> Primitive Types (基本类型)</h2> <p>JavaScript有以下几种基本类型：</p> <ul><li>Boolean</li> <li>String</li> <li>Number</li> <li>null</li> <li>undefined (在Flow中为void)</li> <li>Symbol</li></ul> <p>基本类型可以当做字面量来使用</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token boolean">true</span>
+<span class="token string">&quot;hello&quot;</span>
+<span class="token number">3.14</span>
+<span class="token keyword">null</span>
+undefined
+</code></pre></div><p>或者以构造函数调用的方式使用</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">new</span> <span class="token class-name">Boolean</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span>
+<span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span><span class="token string">&quot;world&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">new</span> <span class="token function">Number</span><span class="token punctuation">(</span><span class="token number">42</span><span class="token punctuation">)</span>
+<span class="token function">Symbol</span><span class="token punctuation">(</span><span class="token string">&quot;foo&quot;</span><span class="token punctuation">)</span>
+</code></pre></div><p>在Flow中在字面量上使用时都是小写方式声明</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">method</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> number<span class="token punctuation">,</span> y<span class="token punctuation">:</span> string<span class="token punctuation">,</span> z<span class="token punctuation">:</span> boolean<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">method</span><span class="token punctuation">(</span><span class="token number">3.14</span><span class="token punctuation">,</span> <span class="token string">&quot;hello&quot;</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>在以构造函数调用得到的对象上使用时第一个字母要大写(和构造函数名一样)</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">method</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> Number<span class="token punctuation">,</span> y<span class="token punctuation">:</span> String<span class="token punctuation">,</span> z<span class="token punctuation">:</span> Boolean<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">method</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Number</span><span class="token punctuation">(</span><span class="token number">42</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span><span class="token string">&quot;world&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Boolean</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p><code>这种以构造函数方式得到的对象几乎很少用</code></p> <h3 id="boolean"><a href="#boolean" aria-hidden="true" class="header-anchor">#</a> Boolean</h3> <p>布尔值在js中非真既假，在Flow中只接受这些值</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">acceptsBoolean</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> boolean<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">acceptsBoolean</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Works!</span>
+<span class="token function">acceptsBoolean</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+<span class="token function">acceptsBoolean</span><span class="token punctuation">(</span><span class="token string">&quot;foo&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Error!</span>
+</code></pre></div><p>在js中会隐式转换其他类型的值为布尔值</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">42</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment">// 42 =&gt; true</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">&quot;&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token comment">// &quot;&quot; =&gt; false</span>
+</code></pre></div><p>boolean类型需要你来手工转换非boolean类型的值，常用方法有 <code>Boolean(x)</code> 与 <code>!!x</code></p> <p>⚠️ <code>boolean</code>与<code>Boolean</code>可是不同的哟</p> <h3 id="number"><a href="#number" aria-hidden="true" class="header-anchor">#</a> Number</h3> <p>和其他语言不同，js对于数字只有一种类型：number，有可能是42, 3.14, 甚至 Infinity和NaN也被认为是number类型，number类型会捕获所有js认为是number类型的值</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">acceptsNumber</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> number<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">acceptsNumber</span><span class="token punctuation">(</span><span class="token number">42</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment">// Works!</span>
+<span class="token function">acceptsNumber</span><span class="token punctuation">(</span><span class="token number">3.14</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// Works!</span>
+<span class="token function">acceptsNumber</span><span class="token punctuation">(</span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// Works!</span>
+<span class="token function">acceptsNumber</span><span class="token punctuation">(</span><span class="token number">Infinity</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+<span class="token function">acceptsNumber</span><span class="token punctuation">(</span><span class="token string">&quot;foo&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// Error!</span>
+
+</code></pre></div><h3 id="string"><a href="#string" aria-hidden="true" class="header-anchor">#</a> String</h3> <p>String类型，就是字符串类型啦</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">acceptsString</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> string<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">acceptsString</span><span class="token punctuation">(</span><span class="token string">&quot;foo&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+<span class="token function">acceptsString</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Error!</span>
+</code></pre></div><p>js会在某些表达式中隐式转换非字符串类型值为string类型，比如：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token string">&quot;foo&quot;</span> <span class="token operator">+</span> <span class="token number">42</span><span class="token punctuation">;</span> <span class="token comment">// &quot;foo42&quot;</span>
+<span class="token string">&quot;foo&quot;</span> <span class="token operator">+</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment">// &quot;foo[object Object]&quot;</span>
+</code></pre></div><p>在Flow中，字符串连接时只允许string类型与number类型参与其中</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token string">&quot;foo&quot;</span> <span class="token operator">+</span> <span class="token string">&quot;foo&quot;</span><span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+<span class="token string">&quot;foo&quot;</span> <span class="token operator">+</span> <span class="token number">42</span><span class="token punctuation">;</span>    <span class="token comment">// Works!</span>
+<span class="token string">&quot;foo&quot;</span> <span class="token operator">+</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>    <span class="token comment">// Error!</span>
+<span class="token string">&quot;foo&quot;</span> <span class="token operator">+</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>    <span class="token comment">// Error!</span>
+
+</code></pre></div><p>你需要自己动手将非字符串类型转换一下，可以使用String()或者其他转化方式</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token string">&quot;foo&quot;</span> <span class="token operator">+</span> <span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// Works!</span>
+<span class="token string">&quot;foo&quot;</span> <span class="token operator">+</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Works!</span>
+<span class="token string">&quot;&quot;</span> <span class="token operator">+</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token comment">// Works!</span>
+</code></pre></div><h3 id="null-and-void"><a href="#null-and-void" aria-hidden="true" class="header-anchor">#</a> null and void</h3> <p>在Flow中，null与undefined被定义为null与void(undefined)</p> <p><code>void void void，重要的声明说三遍</code></p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">acceptsNull</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">/* ... */</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">acceptsUndefined</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token keyword">void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">/* ... */</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">acceptsNull</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// Works!</span>
+<span class="token function">acceptsNull</span><span class="token punctuation">(</span>undefined<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Error!</span>
+<span class="token function">acceptsUndefined</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// Error!</span>
+<span class="token function">acceptsUndefined</span><span class="token punctuation">(</span>undefined<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+
+</code></pre></div><h3 id="maybe-type"><a href="#maybe-type" aria-hidden="true" class="header-anchor">#</a> Maybe type</h3> <p>作者：我给他起名叫待定类型 -v-*</p> <p>你可以在基本类型前加一个问号来声明待定类型</p> <p>待定类型除了当前基本类型是允许的之外，也允许为null或者void</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">acceptsMaybeString</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token operator">?</span>string<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">acceptsMaybeString</span><span class="token punctuation">(</span><span class="token string">&quot;bar&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// Works!</span>
+<span class="token function">acceptsMaybeString</span><span class="token punctuation">(</span>undefined<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+<span class="token function">acceptsMaybeString</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// Works!</span>
+<span class="token function">acceptsMaybeString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">// Works!</span>
+</code></pre></div><p>### Optional object properties</p> <p>作者：我给他起名叫可选对象类型</p> <p>对象类型可以在成员名称后加问号来声明可选对象类型</p> <p>可选对象类型值可以为void，但是不能为null</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">acceptsObject</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token punctuation">{</span> foo<span class="token operator">?</span><span class="token punctuation">:</span> string <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">acceptsObject</span><span class="token punctuation">(</span><span class="token punctuation">{</span> foo<span class="token punctuation">:</span> <span class="token string">&quot;bar&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// Works!</span>
+<span class="token function">acceptsObject</span><span class="token punctuation">(</span><span class="token punctuation">{</span> foo<span class="token punctuation">:</span> undefined <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+<span class="token function">acceptsObject</span><span class="token punctuation">(</span><span class="token punctuation">{</span> foo<span class="token punctuation">:</span> <span class="token keyword">null</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// Error!</span>
+<span class="token function">acceptsObject</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">// Works!</span>
+</code></pre></div><h3 id="optional-function-parameters"><a href="#optional-function-parameters" aria-hidden="true" class="header-anchor">#</a> Optional function parameters</h3> <p>作：可选函数参数</p> <p>同样，函数在调用时，可选函数参数可以为当前类型与void，但是不能为null</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">acceptsOptionalString</span><span class="token punctuation">(</span>value<span class="token operator">?</span><span class="token punctuation">:</span> string<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">acceptsOptionalString</span><span class="token punctuation">(</span><span class="token string">&quot;bar&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// Works!</span>
+<span class="token function">acceptsOptionalString</span><span class="token punctuation">(</span>undefined<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+<span class="token function">acceptsOptionalString</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// Error!</span>
+<span class="token function">acceptsOptionalString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">// Works!</span>
+</code></pre></div><h3 id="function-parameters-with-defaults"><a href="#function-parameters-with-defaults" aria-hidden="true" class="header-anchor">#</a> Function parameters with defaults</h3> <p>函数参数默认值</p> <p>可以为void或者当前类型，但是不能为null</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">acceptsOptionalString</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> string <span class="token operator">=</span> <span class="token string">&quot;foo&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">acceptsOptionalString</span><span class="token punctuation">(</span><span class="token string">&quot;bar&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// Works!</span>
+<span class="token function">acceptsOptionalString</span><span class="token punctuation">(</span>undefined<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+<span class="token function">acceptsOptionalString</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// Error!</span>
+<span class="token function">acceptsOptionalString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">// Works!</span>
+</code></pre></div><p>关于null的记法: 遇到问号看位置，后可void前不可，函数参数默认值，千万不要用null</p> <p>Symbol 留坑中。。。</p></div> <div class="page-edit"><!----> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/Type_Annotations/" class="prev">
+          Type Annotations (类型注释)
+        </a></span> <span class="next"><a href="/Literal_Types/">
+          Literal Types (字面类型)
+        </a>
+        →
+      </span></p></div> </div> <!----></div></div>
+    <script src="/assets/js/10.55c25e75.js" defer></script><script src="/assets/js/app.5a8890b4.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Maybe Types (待定类型)</title>
+    <meta name="description" content="">
+    
+    
+    <link rel="preload" href="/assets/css/styles.5a8890b4.css" as="style"><link rel="preload" href="/assets/js/app.5a8890b4.js" as="script"><link rel="preload" href="/assets/js/7.3fb4ed2a.js" as="script"><link rel="prefetch" href="/assets/css/1.styles.bbb68a50.css"><link rel="prefetch" href="/assets/css/2.styles.a2bd3099.css"><link rel="prefetch" href="/assets/js/1.bbb68a50.js"><link rel="prefetch" href="/assets/js/10.55c25e75.js"><link rel="prefetch" href="/assets/js/11.6dd3ddad.js"><link rel="prefetch" href="/assets/js/12.40ccbb78.js"><link rel="prefetch" href="/assets/js/13.e9f4738b.js"><link rel="prefetch" href="/assets/js/2.a2bd3099.js"><link rel="prefetch" href="/assets/js/3.8d0df0be.js"><link rel="prefetch" href="/assets/js/4.e7506527.js"><link rel="prefetch" href="/assets/js/5.7386d2b6.js"><link rel="prefetch" href="/assets/js/6.7178e768.js"><link rel="prefetch" href="/assets/js/8.836ac591.js"><link rel="prefetch" href="/assets/js/9.9d37b14f.js">
+    <link rel="stylesheet" href="/assets/css/1.styles.bbb68a50.css"><link rel="stylesheet" href="/assets/css/2.styles.a2bd3099.css"><link rel="stylesheet" href="/assets/css/styles.5a8890b4.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/Type_Annotations/" class="sidebar-link">Type Annotations (类型注释)</a></li><li><a href="/Primitive_Types/" class="sidebar-link">Primitive Types (基本类型)</a></li><li><a href="/Literal_Types/" class="sidebar-link">Literal Types (字面类型)</a></li><li><a href="/Mixed_Types/" class="sidebar-link">Mixed Types (混合类型)</a></li><li><a href="/Any_Types/" class="sidebar-link">Any Types (any类型)</a></li><li><a href="/Maybe_Types/" class="active sidebar-link">Maybe Types (待定类型)</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/Maybe_Types/#maybe-types-待定类型" class="sidebar-link">Maybe Types (待定类型)</a></li></ul></li><li><a href="/Variable_Types/" class="sidebar-link">Variable Types (变量类型)</a></li><li><a href="/Function_Types/" class="sidebar-link">Function Types (函数类型)</a></li><li><a href="/Object_Types/" class="sidebar-link">Object Types (对象类型)</a></li><li><a href="/Array_Types/" class="sidebar-link">Array Types (数组类型)</a></li><li><a href="/Tuple_Types/" class="sidebar-link">Tuple Types(元组类型)</a></li></ul> </div> <div class="page"> <div class="content"><h2 id="maybe-types-待定类型"><a href="#maybe-types-待定类型" aria-hidden="true" class="header-anchor">#</a> Maybe Types (待定类型)</h2> <p>在javascript中，你的代码提供一些&quot;可选参数&quot;是再平常不过的一件事，当然你也可以使用缺省值，这时你会传递一个null给函数的参数表</p> <p>Flow可以在这种场景下使用待定类型，待定类型的声明只需要在类型前面加一个'?'</p> <p>待定类型接受当前类型，同事也接受null或者undefined，所以<code>?number</code>代表了number,null或者undefined这三种</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">acceptsMaybeNumber</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token operator">?</span>number<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">acceptsMaybeNumber</span><span class="token punctuation">(</span><span class="token number">42</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">// Works!</span>
+<span class="token function">acceptsMaybeNumber</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">// Works!</span>
+<span class="token function">acceptsMaybeNumber</span><span class="token punctuation">(</span>undefined<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+<span class="token function">acceptsMaybeNumber</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// Works!</span>
+<span class="token function">acceptsMaybeNumber</span><span class="token punctuation">(</span><span class="token string">&quot;42&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// Error!</span>
+</code></pre></div><p>当使用object类型的时候，需要注意，你不传递参数值和参数值声明为undefined是不一样的，待定类型要求成员变量必须一个不落地被传递，甚至成员变量值是undefined</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">acceptsMaybeProp</span><span class="token punctuation">(</span><span class="token punctuation">{</span> value <span class="token punctuation">}</span><span class="token punctuation">:</span> <span class="token punctuation">{</span> value<span class="token punctuation">:</span> <span class="token operator">?</span>number <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">acceptsMaybeProp</span><span class="token punctuation">(</span><span class="token punctuation">{</span> value<span class="token punctuation">:</span> undefined <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+<span class="token function">acceptsMaybeProp</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                   <span class="token comment">// Error!</span>
+
+</code></pre></div><h3 id="待定类型遇到类型改进"><a href="#待定类型遇到类型改进" aria-hidden="true" class="header-anchor">#</a> 待定类型遇到类型改进</h3> <p>假设我们已经使用了<code>?number</code>，当我们使用该变量值时，我们需要确定这个值不是null或者undefined</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">acceptsMaybeNumber</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token operator">?</span>number<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>value <span class="token operator">!==</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> value <span class="token operator">!==</span> undefined<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> value <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>你其实可以简单地使用<code>!=null</code>来同时进行两个判断</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">acceptsMaybeNumber</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token operator">?</span>number<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>value <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> value <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>当然你也可以直观地去检查类型</p> <div class="language-javascipt extra-class"><pre class="language-text"><code>// @flow
+function acceptsMaybeNumber(value: ?number) {
+  if (typeof value === 'number') {
+    return value * 2;
+  }
+}
+</code></pre></div><p>然而，类型改进可能会丢失。例如，在细化对象属性的类型之后调用函数将使这种细化无效。有关更多细节，请参阅<a href="https://flow.org/en/docs/lang/refinements/#toc-refinement-invalidations" target="_blank" rel="noopener noreferrer">细化无效文档<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>，以了解为什么Flow以这种方式工作，以及如何避免这种常见的陷阱。</p></div> <div class="page-edit"><!----> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/Any_Types/" class="prev">
+          Any Types (any类型)
+        </a></span> <span class="next"><a href="/Variable_Types/">
+          Variable Types (变量类型)
+        </a>
+        →
+      </span></p></div> </div> <!----></div></div>
+    <script src="/assets/js/7.3fb4ed2a.js" defer></script><script src="/assets/js/app.5a8890b4.js" defer></script>
+  </body>
+</html>

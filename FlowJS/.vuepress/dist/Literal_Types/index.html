@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Literal Types (字面类型)</title>
+    <meta name="description" content="">
+    
+    
+    <link rel="preload" href="/assets/css/styles.5a8890b4.css" as="style"><link rel="preload" href="/assets/js/app.5a8890b4.js" as="script"><link rel="preload" href="/assets/js/6.7178e768.js" as="script"><link rel="prefetch" href="/assets/css/1.styles.bbb68a50.css"><link rel="prefetch" href="/assets/css/2.styles.a2bd3099.css"><link rel="prefetch" href="/assets/js/1.bbb68a50.js"><link rel="prefetch" href="/assets/js/10.55c25e75.js"><link rel="prefetch" href="/assets/js/11.6dd3ddad.js"><link rel="prefetch" href="/assets/js/12.40ccbb78.js"><link rel="prefetch" href="/assets/js/13.e9f4738b.js"><link rel="prefetch" href="/assets/js/2.a2bd3099.js"><link rel="prefetch" href="/assets/js/3.8d0df0be.js"><link rel="prefetch" href="/assets/js/4.e7506527.js"><link rel="prefetch" href="/assets/js/5.7386d2b6.js"><link rel="prefetch" href="/assets/js/7.3fb4ed2a.js"><link rel="prefetch" href="/assets/js/8.836ac591.js"><link rel="prefetch" href="/assets/js/9.9d37b14f.js">
+    <link rel="stylesheet" href="/assets/css/1.styles.bbb68a50.css"><link rel="stylesheet" href="/assets/css/2.styles.a2bd3099.css"><link rel="stylesheet" href="/assets/css/styles.5a8890b4.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/Type_Annotations/" class="sidebar-link">Type Annotations (类型注释)</a></li><li><a href="/Primitive_Types/" class="sidebar-link">Primitive Types (基本类型)</a></li><li><a href="/Literal_Types/" class="active sidebar-link">Literal Types (字面类型)</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/Literal_Types/#literal-types-字面类型" class="sidebar-link">Literal Types (字面类型)</a></li></ul></li><li><a href="/Mixed_Types/" class="sidebar-link">Mixed Types (混合类型)</a></li><li><a href="/Any_Types/" class="sidebar-link">Any Types (any类型)</a></li><li><a href="/Maybe_Types/" class="sidebar-link">Maybe Types (待定类型)</a></li><li><a href="/Variable_Types/" class="sidebar-link">Variable Types (变量类型)</a></li><li><a href="/Function_Types/" class="sidebar-link">Function Types (函数类型)</a></li><li><a href="/Object_Types/" class="sidebar-link">Object Types (对象类型)</a></li><li><a href="/Array_Types/" class="sidebar-link">Array Types (数组类型)</a></li><li><a href="/Tuple_Types/" class="sidebar-link">Tuple Types(元组类型)</a></li></ul> </div> <div class="page"> <div class="content"><h2 id="literal-types-字面类型"><a href="#literal-types-字面类型" aria-hidden="true" class="header-anchor">#</a> Literal Types (字面类型)</h2> <p>Flow有基本类型来控制字面值，但是我们也可以使用字面值来当做类型约束</p> <p>举个栗子，不使用number 类型，我们可以只接受字面值2来约束参数值</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">acceptsTwo</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">acceptsTwo</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// Works!</span>
+<span class="token comment">// $ExpectError</span>
+<span class="token function">acceptsTwo</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// Error!</span>
+<span class="token comment">// $ExpectError</span>
+<span class="token function">acceptsTwo</span><span class="token punctuation">(</span><span class="token string">&quot;2&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Error!</span>
+</code></pre></div><p>你可以给以下类型声明一个确定的值</p> <ul><li>Booleans: like true or false</li> <li>Numbers: like 42 or 3.14</li> <li>Strings: like &quot;foo&quot; or &quot;bar&quot;</li></ul> <p>配合<code>集合类型</code>可以非常强大</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">getColor</span><span class="token punctuation">(</span>name<span class="token punctuation">:</span> <span class="token string">&quot;success&quot;</span> <span class="token operator">|</span> <span class="token string">&quot;warning&quot;</span> <span class="token operator">|</span> <span class="token string">&quot;danger&quot;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">&quot;success&quot;</span> <span class="token punctuation">:</span> <span class="token keyword">return</span> <span class="token string">&quot;green&quot;</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">&quot;warning&quot;</span> <span class="token punctuation">:</span> <span class="token keyword">return</span> <span class="token string">&quot;yellow&quot;</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">&quot;danger&quot;</span>  <span class="token punctuation">:</span> <span class="token keyword">return</span> <span class="token string">&quot;red&quot;</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">getColor</span><span class="token punctuation">(</span><span class="token string">&quot;success&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+<span class="token function">getColor</span><span class="token punctuation">(</span><span class="token string">&quot;danger&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Works!</span>
+<span class="token comment">// $ExpectError</span>
+<span class="token function">getColor</span><span class="token punctuation">(</span><span class="token string">&quot;error&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// Error!</span>
+</code></pre></div></div> <div class="page-edit"><!----> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/Primitive_Types/" class="prev">
+          Primitive Types (基本类型)
+        </a></span> <span class="next"><a href="/Mixed_Types/">
+          Mixed Types (混合类型)
+        </a>
+        →
+      </span></p></div> </div> <!----></div></div>
+    <script src="/assets/js/6.7178e768.js" defer></script><script src="/assets/js/app.5a8890b4.js" defer></script>
+  </body>
+</html>

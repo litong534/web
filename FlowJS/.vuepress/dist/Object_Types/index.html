@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Object Types (对象类型)</title>
+    <meta name="description" content="">
+    
+    
+    <link rel="preload" href="/assets/css/styles.5a8890b4.css" as="style"><link rel="preload" href="/assets/js/app.5a8890b4.js" as="script"><link rel="preload" href="/assets/js/9.9d37b14f.js" as="script"><link rel="prefetch" href="/assets/css/1.styles.bbb68a50.css"><link rel="prefetch" href="/assets/css/2.styles.a2bd3099.css"><link rel="prefetch" href="/assets/js/1.bbb68a50.js"><link rel="prefetch" href="/assets/js/10.55c25e75.js"><link rel="prefetch" href="/assets/js/11.6dd3ddad.js"><link rel="prefetch" href="/assets/js/12.40ccbb78.js"><link rel="prefetch" href="/assets/js/13.e9f4738b.js"><link rel="prefetch" href="/assets/js/2.a2bd3099.js"><link rel="prefetch" href="/assets/js/3.8d0df0be.js"><link rel="prefetch" href="/assets/js/4.e7506527.js"><link rel="prefetch" href="/assets/js/5.7386d2b6.js"><link rel="prefetch" href="/assets/js/6.7178e768.js"><link rel="prefetch" href="/assets/js/7.3fb4ed2a.js"><link rel="prefetch" href="/assets/js/8.836ac591.js">
+    <link rel="stylesheet" href="/assets/css/1.styles.bbb68a50.css"><link rel="stylesheet" href="/assets/css/2.styles.a2bd3099.css"><link rel="stylesheet" href="/assets/css/styles.5a8890b4.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"></a> <div class="links" style="max-width:nullpx;"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <div class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/Type_Annotations/" class="sidebar-link">Type Annotations (类型注释)</a></li><li><a href="/Primitive_Types/" class="sidebar-link">Primitive Types (基本类型)</a></li><li><a href="/Literal_Types/" class="sidebar-link">Literal Types (字面类型)</a></li><li><a href="/Mixed_Types/" class="sidebar-link">Mixed Types (混合类型)</a></li><li><a href="/Any_Types/" class="sidebar-link">Any Types (any类型)</a></li><li><a href="/Maybe_Types/" class="sidebar-link">Maybe Types (待定类型)</a></li><li><a href="/Variable_Types/" class="sidebar-link">Variable Types (变量类型)</a></li><li><a href="/Function_Types/" class="sidebar-link">Function Types (函数类型)</a></li><li><a href="/Object_Types/" class="active sidebar-link">Object Types (对象类型)</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/Object_Types/#object-types-对象类型" class="sidebar-link">Object Types (对象类型)</a></li><li class="sidebar-sub-header"><a href="/Object_Types/#对象类型推断" class="sidebar-link">对象类型推断</a></li></ul></li><li><a href="/Array_Types/" class="sidebar-link">Array Types (数组类型)</a></li><li><a href="/Tuple_Types/" class="sidebar-link">Tuple Types(元组类型)</a></li></ul> </div> <div class="page"> <div class="content"><h2 id="object-types-对象类型"><a href="#object-types-对象类型" aria-hidden="true" class="header-anchor">#</a> Object Types (对象类型)</h2> <p>对象在javascript中有很多不同的使用方式，所以也会有很多不同的方式来给他们加上类型声明，以覆盖所有不同的使用场景</p> <h3 id="对象类型语法"><a href="#对象类型语法" aria-hidden="true" class="header-anchor">#</a> 对象类型语法</h3> <p>对象类型尝试尽可能多的匹配对象语法，使用大括号以及键值对，使用&quot;,&quot;分隔的方式，写在变量声明以及&quot;:&quot;后</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">var</span> obj1<span class="token punctuation">:</span> <span class="token punctuation">{</span> foo<span class="token punctuation">:</span> boolean <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token punctuation">{</span> foo<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> obj2<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  foo<span class="token punctuation">:</span> number<span class="token punctuation">,</span>
+  bar<span class="token punctuation">:</span> boolean<span class="token punctuation">,</span>
+  baz<span class="token punctuation">:</span> string<span class="token punctuation">,</span>
+<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+  foo<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  bar<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  baz<span class="token punctuation">:</span> <span class="token string">'three'</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="可选对象类型属性"><a href="#可选对象类型属性" aria-hidden="true" class="header-anchor">#</a> 可选对象类型属性</h3> <p>在javascript中，访问不存在的属性会返回undefined，这其实是个很经典的错误，所以flow把这种访问方式定义为错误</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span> foo<span class="token punctuation">:</span> <span class="token string">&quot;bar&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// $ExpectError</span>
+obj<span class="token punctuation">.</span>bar<span class="token punctuation">;</span> <span class="token comment">// Error!</span>
+</code></pre></div><p>如果你有一个对象，他的属性并不一定存在，你可以在他的类型声明的属性名后增加一个?符号，将他声明为可选对象属性</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">var</span> obj<span class="token punctuation">:</span> <span class="token punctuation">{</span> foo<span class="token operator">?</span><span class="token punctuation">:</span> boolean <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+obj<span class="token punctuation">.</span>foo <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>    <span class="token comment">// Works!</span>
+<span class="token comment">// $ExpectError</span>
+obj<span class="token punctuation">.</span>foo <span class="token operator">=</span> <span class="token string">'hello'</span><span class="token punctuation">;</span> <span class="token comment">// Error!</span>
+</code></pre></div><p>除了它们的设置值类型之外，这些可选属性也可以是空的或省略的。但是，它们不能为空</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">acceptsObject</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token punctuation">{</span> foo<span class="token operator">?</span><span class="token punctuation">:</span> string <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">acceptsObject</span><span class="token punctuation">(</span><span class="token punctuation">{</span> foo<span class="token punctuation">:</span> <span class="token string">&quot;bar&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// Works!</span>
+<span class="token function">acceptsObject</span><span class="token punctuation">(</span><span class="token punctuation">{</span> foo<span class="token punctuation">:</span> undefined <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+<span class="token comment">// $ExpectError</span>
+<span class="token function">acceptsObject</span><span class="token punctuation">(</span><span class="token punctuation">{</span> foo<span class="token punctuation">:</span> <span class="token keyword">null</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// Error!</span>
+<span class="token function">acceptsObject</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">// Works!</span>
+
+</code></pre></div><h2 id="对象类型推断"><a href="#对象类型推断" aria-hidden="true" class="header-anchor">#</a> 对象类型推断</h2> <p>flow可以根据对象字面量是如何使用的，来以两种不同的方式推断对象字面量的类型</p> <h3 id="被封装对象"><a href="#被封装对象" aria-hidden="true" class="header-anchor">#</a> 被封装对象</h3> <p>当你创建了一个具有属性的对象时，你也创建了一个被封装对象，该对象可以探知到你为他们赋值时的值类型</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+  foo<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  bar<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  baz<span class="token punctuation">:</span> <span class="token string">'three'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> foo<span class="token punctuation">:</span> number  <span class="token operator">=</span> obj<span class="token punctuation">.</span>foo<span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+<span class="token keyword">var</span> bar<span class="token punctuation">:</span> boolean <span class="token operator">=</span> obj<span class="token punctuation">.</span>bar<span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+<span class="token comment">// $ExpectError</span>
+<span class="token keyword">var</span> baz<span class="token punctuation">:</span> <span class="token keyword">null</span>    <span class="token operator">=</span> obj<span class="token punctuation">.</span>baz<span class="token punctuation">;</span> <span class="token comment">// Error!</span>
+<span class="token keyword">var</span> bat<span class="token punctuation">:</span> string  <span class="token operator">=</span> obj<span class="token punctuation">.</span>bat<span class="token punctuation">;</span> <span class="token comment">// Error!</span>
+</code></pre></div><p>但是当对象被封装后，flow不允许你为他增加新的属性</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+  foo<span class="token punctuation">:</span> <span class="token number">1</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// $ExpectError</span>
+obj<span class="token punctuation">.</span>bar <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>    <span class="token comment">// Error!</span>
+<span class="token comment">// $ExpectError</span>
+obj<span class="token punctuation">.</span>baz <span class="token operator">=</span> <span class="token string">'three'</span><span class="token punctuation">;</span> <span class="token comment">// Error!</span>
+</code></pre></div><h3 id="未封装对象"><a href="#未封装对象" aria-hidden="true" class="header-anchor">#</a> 未封装对象</h3> <p>当你创建了一个空对象，你创建了一个未封装对象，未封装对象是无法感知自己拥有的属性的类型的，你可以为他扩展其他属性</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+obj<span class="token punctuation">.</span>foo <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>       <span class="token comment">// Works!</span>
+obj<span class="token punctuation">.</span>bar <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>    <span class="token comment">// Works!</span>
+obj<span class="token punctuation">.</span>baz <span class="token operator">=</span> <span class="token string">'three'</span><span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+</code></pre></div><p>类型推断会以你为他赋值的类型为准</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+obj<span class="token punctuation">.</span>foo <span class="token operator">=</span> <span class="token number">42</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> num<span class="token punctuation">:</span> number <span class="token operator">=</span> obj<span class="token punctuation">.</span>foo<span class="token punctuation">;</span>
+</code></pre></div><h4 id="重新声明未封装对象属性"><a href="#重新声明未封装对象属性" aria-hidden="true" class="header-anchor">#</a> 重新声明未封装对象属性</h4> <p>类似于var和let变量，如果重新分配未密封对象的属性，默认情况下，Flow将给出所有可能分配的类型</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> obj<span class="token punctuation">.</span>prop <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token keyword">else</span> obj<span class="token punctuation">.</span>prop <span class="token operator">=</span> <span class="token string">&quot;hello&quot;</span><span class="token punctuation">;</span>
+
+<span class="token comment">// $ExpectError</span>
+<span class="token keyword">var</span> val1<span class="token punctuation">:</span> boolean <span class="token operator">=</span> obj<span class="token punctuation">.</span>prop<span class="token punctuation">;</span> <span class="token comment">// Error!</span>
+<span class="token comment">// $ExpectError</span>
+<span class="token keyword">var</span> val2<span class="token punctuation">:</span> string  <span class="token operator">=</span> obj<span class="token punctuation">.</span>prop<span class="token punctuation">;</span> <span class="token comment">// Error!</span>
+<span class="token keyword">var</span> val3<span class="token punctuation">:</span> boolean <span class="token operator">|</span> string <span class="token operator">=</span> obj<span class="token punctuation">.</span>prop<span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+</code></pre></div><p>有时flow有能力指出属性类型，当你重新声明属性之后，在这种情况下，flow会给出确定的类型</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+obj<span class="token punctuation">.</span>prop <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+obj<span class="token punctuation">.</span>prop <span class="token operator">=</span> <span class="token string">&quot;hello&quot;</span><span class="token punctuation">;</span>
+
+<span class="token comment">// $ExpectError</span>
+<span class="token keyword">var</span> val1<span class="token punctuation">:</span> boolean <span class="token operator">=</span> obj<span class="token punctuation">.</span>prop<span class="token punctuation">;</span> <span class="token comment">// Error!</span>
+<span class="token keyword">var</span> val2<span class="token punctuation">:</span> string  <span class="token operator">=</span> obj<span class="token punctuation">.</span>prop<span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+</code></pre></div><h4 id="在未封装对象上查找未知属性是不安全的"><a href="#在未封装对象上查找未知属性是不安全的" aria-hidden="true" class="header-anchor">#</a> 在未封装对象上查找未知属性是不安全的</h4> <p>未封装对象允许任何时机写入新属性，flow确保属性的读写是一致的，但是无法确保写行为是在读行为之前发生的</p> <p>意味着，在属性被写入到未封装对象之前去访问它这个行为是不可被检查的，这个不安全的场景flow在将来可能会改善</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+obj<span class="token punctuation">.</span>foo <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+obj<span class="token punctuation">.</span>bar <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> foo<span class="token punctuation">:</span> number  <span class="token operator">=</span> obj<span class="token punctuation">.</span>foo<span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+<span class="token keyword">var</span> bar<span class="token punctuation">:</span> boolean <span class="token operator">=</span> obj<span class="token punctuation">.</span>bar<span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+<span class="token keyword">var</span> baz<span class="token punctuation">:</span> string  <span class="token operator">=</span> obj<span class="token punctuation">.</span>baz<span class="token punctuation">;</span> <span class="token comment">// Works?</span>
+</code></pre></div><h3 id="绝对对象类型"><a href="#绝对对象类型" aria-hidden="true" class="header-anchor">#</a> 绝对对象类型</h3> <p>在flow中，传递对象时伴随着额外的属性被认为是安全的</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">function</span> <span class="token function">method</span><span class="token punctuation">(</span>obj<span class="token punctuation">:</span> <span class="token punctuation">{</span> foo<span class="token punctuation">:</span> string <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">method</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  foo<span class="token punctuation">:</span> <span class="token string">&quot;test&quot;</span><span class="token punctuation">,</span> <span class="token comment">// Works!</span>
+  bar<span class="token punctuation">:</span> <span class="token number">42</span>      <span class="token comment">// Works!</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>有时我们需要将属性确定在一定的范围中，flow提供了绝对对象类型</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token punctuation">{</span><span class="token operator">|</span> foo<span class="token punctuation">:</span> string<span class="token punctuation">,</span> bar<span class="token punctuation">:</span> number <span class="token operator">|</span><span class="token punctuation">}</span>
+</code></pre></div><p>和普通的对象类型不同，传递带有额外属性的对象是非法的</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">var</span> foo<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token operator">|</span> foo<span class="token punctuation">:</span> string <span class="token operator">|</span><span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token punctuation">{</span> foo<span class="token punctuation">:</span> <span class="token string">&quot;Hello&quot;</span><span class="token punctuation">,</span> bar<span class="token punctuation">:</span> <span class="token string">&quot;World!&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment">// Error!</span>
+</code></pre></div><p>绝对对象类型交叉使用有可能与你的期待结果不一致，如果你需要合并绝对对象类型，请使用扩展运算符</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+
+type FooT <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token operator">|</span> foo<span class="token punctuation">:</span> string <span class="token operator">|</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+type BarT <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token operator">|</span> bar<span class="token punctuation">:</span> number <span class="token operator">|</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+type FooBarFailT <span class="token operator">=</span> FooT <span class="token operator">&amp;</span> BarT<span class="token punctuation">;</span>
+type FooBarT <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token operator">|</span> <span class="token operator">...</span>FooT<span class="token punctuation">,</span> <span class="token operator">...</span>BarT <span class="token operator">|</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> fooBarFail<span class="token punctuation">:</span> FooBarFailT <span class="token operator">=</span> <span class="token punctuation">{</span> foo<span class="token punctuation">:</span> <span class="token string">'123'</span><span class="token punctuation">,</span> bar<span class="token punctuation">:</span> <span class="token number">12</span> <span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment">// Error!</span>
+<span class="token keyword">const</span> fooBar<span class="token punctuation">:</span> FooBarT <span class="token operator">=</span> <span class="token punctuation">{</span> foo<span class="token punctuation">:</span> <span class="token string">'123'</span><span class="token punctuation">,</span> bar<span class="token punctuation">:</span> <span class="token number">12</span> <span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment">// Works!</span>
+</code></pre></div><h3 id="可映射的对象"><a href="#可映射的对象" aria-hidden="true" class="header-anchor">#</a> 可映射的对象</h3> <p>javascript es6中提供了新的Map类，不过目前使用对象来替代map依然是常见的，这种情况下，对象属性的创建和检索会存在于对象整个生命周期，此外，属性不是保持静态不变的，所以写出确定的类型声明是不可能的</p> <p>为了满足以上需求，flow提供了一种叫做索引对象的类型，索引器属性允许使用与索引器键类型匹配的任何键进行读写</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">var</span> o<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token punctuation">[</span>string<span class="token punctuation">]</span><span class="token punctuation">:</span> number <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+o<span class="token punctuation">[</span><span class="token string">&quot;foo&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+o<span class="token punctuation">[</span><span class="token string">&quot;bar&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> foo<span class="token punctuation">:</span> number <span class="token operator">=</span> o<span class="token punctuation">[</span><span class="token string">&quot;foo&quot;</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre></div><p>索引器可以被显示命名</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">var</span> obj<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token punctuation">[</span>user_id<span class="token punctuation">:</span> number<span class="token punctuation">]</span><span class="token punctuation">:</span> string <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+obj<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;Julia&quot;</span><span class="token punctuation">;</span>
+obj<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;Camille&quot;</span><span class="token punctuation">;</span>
+obj<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;Justin&quot;</span><span class="token punctuation">;</span>
+obj<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">&quot;Mark&quot;</span><span class="token punctuation">;</span>
+</code></pre></div><p>当对象类型具有索引器属性时，通过索引器访问属性值不会报告任何错误，这时开发者需要保证访问是正确的</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">var</span> obj<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token punctuation">[</span>number<span class="token punctuation">]</span><span class="token punctuation">:</span> string <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+obj<span class="token punctuation">[</span><span class="token number">42</span><span class="token punctuation">]</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span> <span class="token comment">// No type error, but will throw at runtime</span>
+</code></pre></div><p>索引器属性可以和具名属性混合使用</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// @flow</span>
+<span class="token keyword">var</span> obj<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+  size<span class="token punctuation">:</span> number<span class="token punctuation">,</span>
+  <span class="token punctuation">[</span>id<span class="token punctuation">:</span> number<span class="token punctuation">]</span><span class="token punctuation">:</span> string
+<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+  size<span class="token punctuation">:</span> <span class="token number">0</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span>id<span class="token punctuation">:</span> number<span class="token punctuation">,</span> name<span class="token punctuation">:</span> string<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  obj<span class="token punctuation">[</span>id<span class="token punctuation">]</span> <span class="token operator">=</span> name<span class="token punctuation">;</span>
+  obj<span class="token punctuation">.</span>size<span class="token operator">++</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="object-类型"><a href="#object-类型" aria-hidden="true" class="header-anchor">#</a> object 类型</h3> <p>有时你需要接受任何结构的对象，你可以这样写</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">method</span><span class="token punctuation">(</span>obj<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>这样写虽然可以满足要求，但是这样写是不安全的，应该尽量避免</p> <p>举个栗子，以下代码不会报告任何错误</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">method</span><span class="token punctuation">(</span>obj<span class="token punctuation">:</span> Object<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  obj<span class="token punctuation">.</span>foo <span class="token operator">=</span> <span class="token number">42</span><span class="token punctuation">;</span>               <span class="token comment">// Works.</span>
+  <span class="token keyword">let</span> bar<span class="token punctuation">:</span> boolean <span class="token operator">=</span> obj<span class="token punctuation">.</span>bar<span class="token punctuation">;</span> <span class="token comment">// Works.</span>
+  obj<span class="token punctuation">.</span>baz<span class="token punctuation">.</span>bat<span class="token punctuation">.</span>bam<span class="token punctuation">.</span>bop<span class="token punctuation">;</span>        <span class="token comment">// Works.</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">method</span><span class="token punctuation">(</span><span class="token punctuation">{</span> baz<span class="token punctuation">:</span> <span class="token number">3.14</span><span class="token punctuation">,</span> bar<span class="token punctuation">:</span> <span class="token string">&quot;hello&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></div> <div class="page-edit"><!----> <!----></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/Function_Types/" class="prev">
+          Function Types (函数类型)
+        </a></span> <span class="next"><a href="/Array_Types/">
+          Array Types (数组类型)
+        </a>
+        →
+      </span></p></div> </div> <!----></div></div>
+    <script src="/assets/js/9.9d37b14f.js" defer></script><script src="/assets/js/app.5a8890b4.js" defer></script>
+  </body>
+</html>
