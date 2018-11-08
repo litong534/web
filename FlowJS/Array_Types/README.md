@@ -89,8 +89,6 @@ if (value !== undefined) {
 }
 ```
 
-当flow变得足以
-
 ### $ReadOnlyArray<T>
 
 和 $ReadOnly<T>类似，它是所有数组和所有元组的超类型，并表示只读，它不包含任何允许这种类型的对象被变更的方法（比如pop(), push()等等）
